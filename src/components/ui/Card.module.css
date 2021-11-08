@@ -1,0 +1,26 @@
+.cardContainer {
+  width: 45%;
+  min-width: 300px;
+  height: 150px;
+  padding: 25px 20px;
+  color: rgb(238, 238, 238);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cardContainer h2 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.cardContainer span {
+  color: white;
+  font-weight: 600;
+  font-size: 2.3rem;
+}
+
+.iconDummy {
+  font-size: 4rem;
+  color: rgba(255, 255, 255, 0.5);
+}

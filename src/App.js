@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Header from "./components/header/Header";
-import Dashboard from "./components/dashboard/Dashboard";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (

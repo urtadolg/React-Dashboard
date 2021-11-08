@@ -1,0 +1,36 @@
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  padding: 50px 10px;
+  height: 100vh;
+  min-width: 250px;
+  background-color: rgb(0, 0, 77);
+  color: white;
+  font-size: 1rem;
+}
+
+.headerContainer ul {
+  width: 100%;
+}
+
+.headerContainer ul li {
+  margin-bottom: 15px;
+}
+
+.headerContainer ul li:hover {
+  cursor: pointer;
+  background-color: var(--primary);
+}
+
+a {
+  padding: 13px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.active {
+  background-color: var(--primary);
+}

@@ -1,0 +1,52 @@
+.sectionContainer {
+  flex-grow: 1;
+  width: 100%;
+  height: 100vh;
+  padding: 2rem;
+  overflow: auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: grey;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.header span {
+  font-size: 3rem;
+}
+
+.header h1 {
+  font-size: 3rem;
+}
+
+.summaryCardsContainer {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  background-color: lightslategray;
+  flex-grow: 1;
+}
+
+.sales {
+  background-color: rgb(83, 0, 100);
+}
+
+.pending {
+  background-color: darkblue;
+}
+
+.revenue {
+  background-color: darkgreen;
+}
+
+.newClients {
+  background-color: rgb(92, 50, 0);
+}
