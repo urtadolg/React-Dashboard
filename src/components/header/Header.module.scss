@@ -1,0 +1,28 @@
+@import "../../variables";
+
+.headerContainer {
+  @include makeFlex(column, 50px);
+  height: 100vh;
+  min-width: 250px;
+  background-color: $backgroundHeader;
+  color: $lightText;
+  font-size: 1rem;
+  padding: 50px 0px;
+  ul {
+    width: 100%;
+    li {
+      margin-bottom: 15px;
+      &:hover {
+        cursor: pointer;
+        background-color: $primary;
+      }
+    }
+  }
+  a {
+    @include makeFlex(row, 10px);
+    padding: 13px 20px;
+  }
+  .active {
+    background-color: $primary;
+  }
+}

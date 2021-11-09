@@ -1,13 +1,13 @@
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import styles from "./Dashboard.module.css";
+import styles from "./Dashboard.module.scss";
 import Card from "../components/ui/Card";
 
 function Dashboard() {
   return (
     <section className={styles.sectionContainer}>
-      <header className={styles.header}>
+      <header>
         <span>
           <FontAwesomeIcon icon={faHome} />
         </span>
@@ -17,25 +17,25 @@ function Dashboard() {
         <Card
           className={`${styles.card} ${styles.sales}`}
           title="SALES"
-          value="35673"
+          value={35673}
           description="Last 30 days"
         />
         <Card
           className={`${styles.card} ${styles.pending}`}
           title="SALES"
-          value="35673"
+          value={35673}
           description="Last 30 days"
         />
         <Card
           className={`${styles.card} ${styles.revenue}`}
           title="SALES"
-          value="35673"
+          value={35673}
           description="Last 30 days"
         />
         <Card
           className={`${styles.card} ${styles.newClients}`}
           title="SALES"
-          value="35673"
+          value={35673}
           description="Last 30 days"
         />
       </div>

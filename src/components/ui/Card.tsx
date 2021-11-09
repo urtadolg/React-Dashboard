@@ -1,9 +1,14 @@
-import styles from "./Card.module.css";
+import styles from "./Card.module.scss";
 
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function Card(props) {
+const Card: React.FC<{
+  className: string;
+  title: string;
+  value: number;
+  description: string;
+}> = (props) => {
   return (
     <div className={`${styles.cardContainer} ${props.className}`}>
       <FontAwesomeIcon className={styles.iconDummy} icon={faHome} />
@@ -14,7 +19,7 @@ function Card(props) {
       </div>
     </div>
   );
-}
+};
 
 export default Card;
 

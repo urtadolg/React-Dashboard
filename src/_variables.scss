@@ -1,0 +1,16 @@
+$primary: rgb(0, 139, 219);
+$backgroundHeader: rgb(0, 0, 77);
+$lightText: white;
+$lightIconsTransparency: rgba(218, 218, 218, 0.8);
+
+$cardSales: rgb(83, 0, 100);
+$cardpending: darkblue;
+$cardrevenue: darkgreen;
+$cardnewClients: rgb(92, 50, 0);
+
+@mixin makeFlex($direction, $gap) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  gap: $gap;
+}

@@ -8,7 +8,7 @@ import {
   faAddressBook,
 } from "@fortawesome/free-solid-svg-icons";
 
-import styles from "./Header.module.css";
+import styles from "./Header.module.scss";
 
 function Header() {
   return (

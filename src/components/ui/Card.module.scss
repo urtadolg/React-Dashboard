@@ -1,0 +1,24 @@
+@import "../../variables";
+
+.cardContainer {
+  @include makeFlex(row, 20px);
+  width: 24%;
+  min-width: 300px;
+  max-width: 600px;
+  height: 150px;
+  padding: 25px 20px;
+  color: $lightIconsTransparency;
+  h2 {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  span {
+    color: $lightText;
+    font-weight: 600;
+    font-size: 2.3rem;
+  }
+  .iconDummy {
+    font-size: 4rem;
+    color: $lightIconsTransparency;
+  }
+}
