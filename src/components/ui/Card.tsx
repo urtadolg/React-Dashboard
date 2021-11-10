@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Card: React.FC<{
   className: string;
   title: string;
-  value: number;
+  value: string;
   description: string;
 }> = (props) => {
   return (
