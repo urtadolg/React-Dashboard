@@ -3,8 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styles from "./Dashboard.module.scss";
 import Card from "../components/ui/Card";
+import Title from "../components/ui/Title";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import { add } from "../store/salesSlice";
+import BodyContainer from "../components/ui/BodyContainer";
 
 function Dashboard() {
   const sales = useAppSelector((state) => state.sales.sales);
@@ -17,14 +19,8 @@ function Dashboard() {
   };
 
   return (
-    <section className={styles.sectionContainer}>
-      <header>
-        <span>
-          <FontAwesomeIcon icon={faHome} />
-        </span>
-        <h1>Dashboard</h1>
-        <button onClick={onAddHandler}>Add</button>
-      </header>
+    <BodyContainer className={styles.sectionContainer}>
+      <Title iconName="home" title="Dashboard" />
       <div className={styles.summaryCardsContainer}>
         <Card
           className={`${styles.card} ${styles.sales}`}
@@ -51,7 +47,7 @@ function Dashboard() {
           description="Last 30 days"
         />
       </div>
-    </section>
+    </BodyContainer>
   );
 }
 

@@ -1,12 +1,5 @@
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faShoppingCart,
-  faHome,
-  faFolder,
-  faUsers,
-  faAddressBook,
-} from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Header.module.scss";
 
@@ -20,7 +13,7 @@ function Header() {
             className={(navData) => (navData.isActive ? styles.active : "")}
             to="/dashboard"
           >
-            <FontAwesomeIcon icon={faHome} />
+            <FontAwesomeIcon icon="home" />
             Dashboard
           </NavLink>
         </li>
@@ -29,7 +22,7 @@ function Header() {
             className={(navData) => (navData.isActive ? styles.active : "")}
             to="/products"
           >
-            <FontAwesomeIcon icon={faFolder} />
+            <FontAwesomeIcon icon="folder" />
             Products
           </NavLink>
         </li>
@@ -38,7 +31,7 @@ function Header() {
             className={(navData) => (navData.isActive ? styles.active : "")}
             to="/sales"
           >
-            <FontAwesomeIcon icon={faShoppingCart} />
+            <FontAwesomeIcon icon="shopping-cart" />
             Sales
           </NavLink>
         </li>
@@ -47,7 +40,7 @@ function Header() {
             className={(navData) => (navData.isActive ? styles.active : "")}
             to="/clients"
           >
-            <FontAwesomeIcon icon={faUsers} />
+            <FontAwesomeIcon icon="users" />
             Clients
           </NavLink>
         </li>
@@ -56,7 +49,7 @@ function Header() {
             className={(navData) => (navData.isActive ? styles.active : "")}
             to="/employees"
           >
-            <FontAwesomeIcon icon={faAddressBook} />
+            <FontAwesomeIcon icon="address-book" />
             Employees
           </NavLink>
         </li>
