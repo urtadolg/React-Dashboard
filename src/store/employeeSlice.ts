@@ -4,7 +4,7 @@ const initialState = {
   dummyData: [
     {
       id: 1,
-      name: "Leandro Guedes urtado",
+      name: "Leandro",
       email: "leandro@gmail.com",
       phone: "987654321",
       skype: "leandro.skype",
@@ -14,7 +14,7 @@ const initialState = {
     },
     {
       id: 2,
-      name: "Leandroo",
+      name: "Leandro",
       email: "leandro@gmail.com",
       phone: "987654321",
       skype: "leandro.skype",

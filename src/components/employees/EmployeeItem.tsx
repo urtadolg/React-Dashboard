@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./EmployeeItem.module.scss";
 
 const EmployeeItem: React.FC<{
   classNameRow: string;

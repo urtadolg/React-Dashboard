@@ -7,4 +7,18 @@
   padding: 2rem;
   overflow: auto;
   background-color: $lightBodyBackground;
+
+  .header {
+    @include makeFlex(row, 20px);
+    color: grey;
+    width: 100%;
+    margin-bottom: 2rem;
+    span {
+      font-size: 3rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+    }
+  }
 }

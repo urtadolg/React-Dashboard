@@ -1,0 +1,73 @@
+@import "../../variables";
+
+.formContainer {
+  @include makeFlex(column, 10px);
+  align-items: flex-start;
+  margin: auto;
+  padding: 1rem 1.5rem;
+  border-radius: 5px;
+  width: 60%;
+  background-color: white;
+
+  .fullName {
+    display: block;
+    @include makeFlex(row, 10px);
+    width: 100%;
+  }
+
+  label {
+    font-weight: 600;
+  }
+
+  input,
+  select {
+    width: 100%;
+    padding: 0 1rem;
+    line-height: 2rem;
+    font-size: 1rem;
+    border: rgb(180, 180, 180) 1px solid;
+    border-radius: 2px;
+    outline: none;
+    margin-bottom: 5px;
+    &:focus {
+      border: black solid 1px;
+    }
+  }
+
+  select {
+    height: 2rem;
+    width: fit-content;
+  }
+
+  .phoneNumber {
+    @include makeFlex(row, 10px);
+    width: 100%;
+    input {
+      width: fit-content;
+      &:last-child {
+        width: 100%;
+      }
+    }
+  }
+
+  .situationContainer {
+    @include makeFlex(row, 20px);
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+  }
+
+  .btn {
+    @include makeFlex(row, 10px);
+    width: 100%;
+    justify-content: flex-end;
+
+    button[type="button"] {
+      background-color: $btnCancelBackground;
+      &:hover {
+        background-color: $btnCancelBackground + 10;
+      }
+    }
+  }
+}

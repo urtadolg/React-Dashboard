@@ -1,0 +1,13 @@
+@import "../../variables";
+
+.btn {
+  border: none;
+  padding: 1rem 1.5rem;
+  color: $lightText;
+  background-color: $primary;
+  border-radius: 5px;
+  &:hover {
+    cursor: pointer;
+    background-color: $primary + 20;
+  }
+}

@@ -1,0 +1,23 @@
+.listSection {
+  display: table;
+  width: 100%;
+
+  > * {
+    display: table-row;
+    line-height: 5rem;
+  }
+
+  header {
+    color: rgb(161, 161, 161);
+    font-weight: bold;
+  }
+
+  .col {
+    display: table-cell;
+    border-bottom: rgb(219, 219, 219) solid 1px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
