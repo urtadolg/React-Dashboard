@@ -17,7 +17,7 @@ import NewEmployee from "./pages/employees/NewEmployee";
 library.add(faShoppingCart, faHome, faFolder, faUsers, faAddressBook);
 
 function App() {
-  useEffect(() => {
+  /* useEffect(() => {
     const loadingData = async () => {
       const response = await fetch(
         "https://dashboard-store-86edf-default-rtdb.firebaseio.com/employees.json"
@@ -28,14 +28,12 @@ function App() {
       }
 
       const data = await response.json();
-
-      console.log(data);
     };
 
     loadingData().catch((error) => {
       console.log(error);
     });
-  }, []);
+  }, []); */
 
   return (
     <Fragment>

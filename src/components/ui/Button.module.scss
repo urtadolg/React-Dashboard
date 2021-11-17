@@ -10,4 +10,8 @@
     cursor: pointer;
     background-color: $primary + 20;
   }
+  &:disabled {
+    background-color: rgb(179, 179, 179);
+    color: rgb(48, 48, 48);
+  }
 }

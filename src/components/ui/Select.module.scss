@@ -1,0 +1,32 @@
+@import "../../variables";
+
+.selectContainer {
+  select {
+    padding: 0 1rem;
+    line-height: 2rem;
+    font-size: 1rem;
+    border: rgb(180, 180, 180) 1px solid;
+    border-radius: 2px;
+    outline: none;
+    margin-bottom: 5px;
+    height: 2rem;
+    width: fit-content;
+    &:focus {
+      border: black solid 1px;
+    }
+  }
+
+  p {
+    color: $txtColorErrorMessage;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .inputError {
+    border-color: $txtColorErrorMessage;
+    background-color: rgb(255, 206, 202);
+    &::placeholder {
+      color: $txtColorErrorMessage;
+    }
+  }
+}
