@@ -13,5 +13,13 @@
   &:disabled {
     background-color: rgb(179, 179, 179);
     color: rgb(48, 48, 48);
+    cursor: not-allowed;
+  }
+}
+
+.btnCancel {
+  background-color: $btnCancelBackground;
+  &:hover {
+    background-color: $btnCancelBackground + 10;
   }
 }

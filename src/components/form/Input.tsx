@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import useInput from "../../hooks/useInput";
 import styles from "./Input.module.scss";
@@ -10,21 +10,24 @@ const Input: React.FC<{
   validationFunction: (userInput: string) => boolean;
   errorMessage: string;
   inputRef?: React.LegacyRef<HTMLInputElement> | undefined;
-  formIsValid?: (formInputs: boolean, inputName: string) => boolean;
+  onInputChange: (inputId: string, userInputIsValid: boolean) => void;
 }> = (props) => {
+  //calling useInput custom hook to handle input validation
   const {
-    userInput, //submit e value
-    userInputIsValid, //form is valid test (formIsValid button render)
-    hasError, //classes
+    userInput,
+    userInputIsValid,
+    hasError,
     inputChangeHandler,
     inputBlurHandler,
-    reset, //submit
+    reset, //129
   } = useInput(props.validationFunction);
 
-  if (props.formIsValid) {
-    props.formIsValid(userInputIsValid, props.id);
-  }
+  //sending input validation state to NewEmployee component
+  useEffect(() => {
+    props.onInputChange(props.id, userInputIsValid);
+  }, [userInputIsValid]);
 
+  //handling error style classes
   const inputClasses = hasError
     ? `${styles.input} ${styles.inputError}`
     : styles.input;

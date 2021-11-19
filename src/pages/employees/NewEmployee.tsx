@@ -1,17 +1,19 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./NewEmployee.module.scss";
 import BodyContainer from "../../components/ui/BodyContainer";
 import Button from "../../components/ui/Button";
-import Input from "../../components/ui/Input";
-import Select from "../../components/ui/Select";
-
-/* "um objeto no newEmployee.tsx recebe todos o input validation atravez de um objeto"; */
-
-const inputsValidation: { [firstName: string]: boolean } = {};
-let isFormValid: boolean = false;
+import Input from "../../components/form/Input";
+import Select from "../../components/form/Select";
+import FormCancel from "../../components/modal/FormCancel";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import { uiActions } from "../../store/uiSlice";
 
 function NewEmployee() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   //form input refs:
   const firstNameInputRef = useRef<HTMLInputElement>(null);
   const lastNameInputRef = useRef<HTMLInputElement>(null);
@@ -23,21 +25,29 @@ function NewEmployee() {
   const storeInputRef = useRef<HTMLSelectElement>(null);
   const roleInputRef = useRef<HTMLSelectElement>(null);
 
-  //form validation:
-  const formValidation = (formInputs: boolean, inputName: string): boolean => {
-    inputsValidation[inputName] = formInputs;
+  //state to track input validation
+  const [inputState, setInputState] = useState<{}>({});
 
-    if (
-      Object.values(inputsValidation).every((item) => item === true) &&
-      situationInputRef.current!.value
-    ) {
-      isFormValid = true;
-      return true;
-    }
+  //state to decide whether or not render form cancel modal
+  const isCanceling: boolean = useAppSelector(
+    (state) => state.ui.isCancelFormModalOpened
+  );
 
-    isFormValid = false;
-    return false;
+  //receiving input validation state from Input and Select custom components.
+  const onInputChangeHandler: (
+    inputId: string,
+    userInputIsValid: boolean
+  ) => void = (inputId, userInputIsValid) => {
+    setInputState((state) => {
+      return {
+        ...state,
+        [inputId]: userInputIsValid,
+      };
+    });
   };
+
+  //handling form validation
+  let formIsInvalid: boolean = Object.values(inputState).includes(false);
 
   //form submit handler:
   const onSubmitHandler = (event: React.FormEvent) => {
@@ -56,9 +66,42 @@ function NewEmployee() {
     };
 
     console.log(userData);
+
+    //saving data in firebase
+    const saveData = async (userData: {}) => {
+      const response = await fetch(
+        "https://dashboard-store-86edf-default-rtdb.firebaseio.com/employees.json",
+        {
+          method: "POST",
+          body: JSON.stringify(userData),
+          headers: {
+            "Content-Type": "text/JSON",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Unable to save data");
+      }
+
+      console.log("Dados salvos com sucesso!");
+    };
+
+    try {
+      saveData(userData);
+    } catch (error) {
+      console.log(error);
+    }
+    //fim do fetch
+    //redirecting page
+    navigate("/Employees", { replace: true });
   };
 
-  // Text validation
+  //form cancel handler:
+  const onCancelHandler = () => {
+    dispatch(uiActions.openCancelFormModal());
+  };
+
   const textValidation = (userInput: string): boolean => {
     if (userInput.trim() === "" || parseInt(userInput)) {
       return false;
@@ -66,7 +109,6 @@ function NewEmployee() {
     return true;
   };
 
-  // email validation
   const emailValidation = (userInput: string): boolean => {
     if (
       userInput.trim() === "" ||
@@ -78,17 +120,16 @@ function NewEmployee() {
     return true;
   };
 
-  // phone validation
   const phoneValidation = (userInput: string): boolean => {
     if (userInput.trim() === "" || !parseInt(userInput)) {
       return false;
     }
     return true;
   };
-  console.log(!isFormValid);
 
   return (
     <BodyContainer iconName="home" title="New Employee">
+      {isCanceling && <FormCancel />}
       <form className={styles.formContainer} onSubmit={onSubmitHandler}>
         <label htmlFor="fullName">Name:</label>
         <div className={styles.fullName}>
@@ -99,7 +140,7 @@ function NewEmployee() {
             validationFunction={textValidation}
             errorMessage="Please, enter a valid first name."
             inputRef={firstNameInputRef}
-            formIsValid={formValidation}
+            onInputChange={onInputChangeHandler}
           />
           <Input
             type="text"
@@ -108,7 +149,7 @@ function NewEmployee() {
             validationFunction={textValidation}
             errorMessage="Please, enter a valid last name."
             inputRef={lastNameInputRef}
-            formIsValid={formValidation}
+            onInputChange={onInputChangeHandler}
           />
         </div>
         <label htmlFor="email">Email:</label>
@@ -119,7 +160,7 @@ function NewEmployee() {
           validationFunction={emailValidation}
           errorMessage={"Invalid email."}
           inputRef={emailInputRef}
-          formIsValid={formValidation}
+          onInputChange={onInputChangeHandler}
         />
         <label htmlFor="phone">Phone number:</label>
         <div className={styles.phoneNumber}>
@@ -130,7 +171,7 @@ function NewEmployee() {
             validationFunction={phoneValidation}
             errorMessage="Invalid area code."
             inputRef={areaCodeInputRef}
-            formIsValid={formValidation}
+            onInputChange={onInputChangeHandler}
           />
           <Input
             type="text"
@@ -139,7 +180,7 @@ function NewEmployee() {
             validationFunction={phoneValidation}
             errorMessage="Please enter a valid phone number"
             inputRef={phoneNumberInputRef}
-            formIsValid={formValidation}
+            onInputChange={onInputChangeHandler}
           />
         </div>
         <label htmlFor="skype">Skype:</label>
@@ -150,7 +191,7 @@ function NewEmployee() {
           validationFunction={textValidation}
           errorMessage="Please, enter a valid skype user"
           inputRef={skypeInputRef}
-          formIsValid={formValidation}
+          onInputChange={onInputChangeHandler}
         />
         <div className={styles.situationContainer}>
           <div>
@@ -158,7 +199,7 @@ function NewEmployee() {
             <Select
               id="situation"
               inputRef={situationInputRef}
-              formIsValid={formValidation}
+              onInputChange={onInputChangeHandler}
               options={["Active", "Inactive"]}
             />
           </div>
@@ -167,7 +208,7 @@ function NewEmployee() {
             <Select
               id="store"
               inputRef={storeInputRef}
-              formIsValid={formValidation}
+              onInputChange={onInputChangeHandler}
               options={["Store1", "Store2", "Store3"]}
             />
           </div>
@@ -176,16 +217,18 @@ function NewEmployee() {
             <Select
               id="role"
               inputRef={roleInputRef}
-              formIsValid={formValidation}
+              onInputChange={onInputChangeHandler}
               options={["Salesman", "Manager"]}
             />
           </div>
         </div>
         <div className={styles.btn}>
-          <Button type="submit" disabled={!isFormValid}>
+          <Button type="submit" disabled={formIsInvalid}>
             Submit
           </Button>
-          <Button type="button">Cancel</Button>
+          <Button type="button" onClick={onCancelHandler}>
+            Cancel
+          </Button>
         </div>
       </form>
     </BodyContainer>

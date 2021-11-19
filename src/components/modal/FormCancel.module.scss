@@ -1,0 +1,46 @@
+@import "../../variables";
+
+.modalBackground {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100vh;
+}
+
+.modalContainer {
+  @include makeFlex(column, 0px);
+  justify-content: space-between;
+  align-items: flex-start;
+  position: fixed;
+  top: 30%;
+  width: 400px;
+  left: calc(50% - 200px);
+  z-index: 20;
+  height: 200px;
+  background-color: white;
+  border-radius: 10px;
+  header {
+    width: 100%;
+    h1 {
+      background-color: $primary;
+      border-radius: 10px 10px 0 0;
+      color: white;
+      overflow: visible;
+      padding: 0.5rem 1.5rem;
+      font-size: 1.5rem;
+    }
+  }
+  p {
+    padding: 0 1.5rem;
+    font-size: 1.1rem;
+  }
+  div {
+    @include makeFlex(row, 5px);
+    justify-content: flex-end;
+    width: 100%;
+    padding: 0 1rem 1rem 1rem;
+  }
+}

@@ -1,22 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import styles from "./Select.module.scss";
 import useInput from "../../hooks/useInput";
 
-/*   type: string;
-  id: string;
-  placeholder?: string;
-  validationFunction: (userInput: string) => boolean;
-  errorMessage: string;
-  inputRef?: React.LegacyRef<HTMLInputElement> | undefined;
-  formIsValid?: (formInputs: boolean, inputName: string) => boolean; */
-
 const Select: React.FC<{
   id: string;
   inputRef?: React.LegacyRef<HTMLSelectElement> | undefined;
-  formIsValid?: (formInputs: boolean, inputName: string) => boolean;
+  onInputChange: (inputId: string, userInputIsValid: boolean) => void;
   options: string[];
 }> = (props) => {
+  //validation function check if select is null
   const selectValidationFunction = (
     userSelectedItem: string | undefined
   ): boolean => {
@@ -26,23 +19,27 @@ const Select: React.FC<{
     return true;
   };
 
+  //calling useInput custom hook to handle input validation
   const {
-    userInput, //submit e value
-    userInputIsValid, //form is valid test (formIsValid button render)
-    hasError, //classes
+    userInput,
+    userInputIsValid,
+    hasError,
     inputChangeHandler,
     inputBlurHandler,
-    reset, //submit
+    reset,
   } = useInput(selectValidationFunction);
 
-  if (props.formIsValid) {
-    props.formIsValid(userInputIsValid, props.id);
-  }
+  //sending input validation state to NewEmployee component
+  useEffect(() => {
+    props.onInputChange(props.id, userInputIsValid);
+  }, [userInputIsValid]);
 
+  //handling error style classes
   const selectClasses = hasError
     ? `${styles.input} ${styles.inputError}`
     : styles.input;
 
+  //mapping through props.options and rendering it.
   const selectOptions = props.options.map((item) => {
     return (
       <option key={item} value={item.toLowerCase()}>
