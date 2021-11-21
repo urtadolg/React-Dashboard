@@ -2,6 +2,8 @@
 
 ## Screenshots
 
+Form to add new employee
+
 ![screenshot 1](https://user-images.githubusercontent.com/89041463/142686869-7df5e815-6275-4ddb-9597-c9d800e7bee0.png)
 #
 ![screenshot 2](https://user-images.githubusercontent.com/89041463/142687911-421e8e52-dd7d-4db5-96bf-aaf21c1998bf.png)
